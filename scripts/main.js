@@ -59,7 +59,24 @@ const removeCoin = (coin) => {
   savePortfolio(currentPortfolio);
 };
 
-const openModal = () => {};
+const updatePortfolioValue = (coin, newValue) => {
+  const currentPrice = Number($(`#${coin}-price`).text());
+  const currentPortfolioValue = (newValue * currentPrice).toFixed(2);
+
+  $(`#${coin}-portfolio-value`).text(currentPortfolioValue);
+};
+
+const addPortfolio = (coin) => {
+  const coinUnitsOwned = $(`#${coin}-input`).val();
+
+  if (!isNaN(Number(coinUnitsOwned))) {
+    addCoin(coin, Number(coinUnitsOwned));
+    updatePortfolioValue(coin, coinUnitsOwned);
+    return;
+  }
+  alert("Please enter a number");
+  return;
+};
 
 $(document).ready(() => {
   $("#filter-input-box").on("keyup", function () {
@@ -78,19 +95,20 @@ $(document).ready(() => {
 
       const innerHTML = `
              <tr>
-                <td class='coin-name' onclick="openModal()">${name}</td>
-                <td>${price}</td>
+                <td class='coin-name'">${name}</td>
+                <td id="${name}-price">${price}</td>
                 <td>${moment(time).format("h:mm:ss a")}</td>
-                <td>${
-                  portfolio[name]
-                    ? price * portfolio[name] +
-                      " (" +
-                      portfolio[name] +
-                      " " +
-                      name +
-                      ")"
-                    : 0
-                }</td>
+              
+                 <td>
+                 <form onsubmit="addPortfolio('${name}')">
+                    <input size="4" id="${name}-input" value='${
+        portfolio[name] ? portfolio[name] : 0
+      }' /></form> 
+                 </td>
+
+                <td id="${name}-portfolio-value">${
+        portfolio[name] ? (price * portfolio[name]).toFixed(2) : 0
+      }</td>
 
             </tr>
         `;
@@ -105,7 +123,6 @@ $(document).ready(() => {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       const sortedCoinPrices = sortPrices(data.rates);
       displayPrices(sortedCoinPrices);
     })
