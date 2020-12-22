@@ -7,8 +7,19 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div id="toggle-wrapper">
+      <a href="#" id="toggle-btn" data-view="portfolio">NEWS</a>
+    </div>
+    <div id="news-wrapper">
+      <h1>Crypto News</h1>
+      <div id="news-list-wrapper"></div>
+    </div>
     <div id="coin-wrapper">
-      <input type="text" id="filter-input-box" placeholder="filter" />
+      <input
+        type="text"
+        id="filter-input-box"
+        placeholder="type coin symbol e.g BTC"
+      />
       <table>
         <thead>
           <tr>

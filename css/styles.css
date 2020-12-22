@@ -1,8 +1,23 @@
+div > #container {
+  display: flex;
+}
+div > #coin-wrapper {
+}
+a > #toggle-btn {
+  position: fixed;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
+  width: 80%;
+  height: 250px;
   border: 1px solid #ddd;
+  position: relative;
+  margin-top: 30px;
 }
 
 th,
@@ -18,8 +33,28 @@ tr:nth-child(even) {
 #filter-input-box {
   padding: 10px;
   margin-bottom: 10px;
-  width: 400px;
+  width: 300px;
   font-size: 18px;
   border-radius: 5px;
   outline: none;
+  background-color: ;
+  margin-top: 20px;
+}
+
+#news-wrapper {
+  display: none;
+}
+
+#toggle-wrapper {
+  float: right;
+  /* border: 1px solid black; */
+  padding: 10px;
+  width: 100px;
+  border-radius: 5px;
+  outline: none;
+  margin-right: 10px;
+}
+a:link {
+  font-size: 25px;
+  text-decoration: none;
 }

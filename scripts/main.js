@@ -116,10 +116,11 @@ $(document).ready(() => {
     });
     // $('#coin-wrapper')
   };
-  const apiKey = "7A224DAC-9286-42A8-B2D8-BB400EEB77D5";
+  const coinApiKey = "7A224DAC-9286-42A8-B2D8-BB400EEB77D5";
+  const gnewsApiKey = "40103cea1bf3d18bc6a9678a0ac8ad37";
 
   fetch(
-    `https://rest-sandbox.coinapi.io/v1/exchangerate/USD?apikey=${apiKey}&invert=true`
+    `https://rest-sandbox.coinapi.io/v1/exchangerate/USD?apikey=${coinApiKey}&invert=true`
   )
     .then((response) => response.json())
     .then((data) => {
@@ -129,8 +130,36 @@ $(document).ready(() => {
     .catch((err) => {
       console.log("error", err);
     });
-  // const getMarketResponse = await fetch(
-  //   `https://rest-sandbox.coinapi.io/v1/exchangerate/USD?apikey=${apiKey}&invert=true`
-  // );
-  // const getResponseJSON = await getMarketResponse.json()
+  fetch(
+    `https://gnews.io/api/v4/search?q=cryptocurrency&token=${gnewsApiKey}&lang=en&max=30`
+  )
+    .then((response) => response.json())
+    .then((newsResult) => {
+      console.log(newsResult);
+      const articles = newsResult.articles;
+      articles.forEach((article) => {
+        const title = article.title;
+        const url = article.url;
+
+        const articleLink = `<div> <a href="${url}" target="_blank">${title}</a> </div>`;
+
+        $("#news-list-wrapper").append(articleLink);
+      });
+    })
+    .catch((err) => {
+      console.log("Unable to fetch news from newsApi");
+    });
+
+  $("#toggle-btn").on("click", function () {
+    $("#coin-wrapper").toggle();
+    $("#news-wrapper").toggle();
+
+    if ($(this).data("view") === "portfolio") {
+      $(this).data("view", "news");
+      $(this).text("PORTFOLIO");
+    } else {
+      $(this).data("view", "portfolio");
+      $(this).text("NEWS");
+    }
+  });
 });
