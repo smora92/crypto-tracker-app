@@ -1,8 +1,92 @@
+* {
+  margin: 0;
+  list-style-type: none;
+}
+body {
+  background: #f2f2f2;
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Newsreader', serif;
+}
+
+body .container {
+  margin: 2%;
+  height: 90vh;
+}
+
+.container #page-title {
+  padding: 20px 0;
+}
+
+nav {
+  position: relative;
+  width: 100vw;
+  height: 50px;
+  margin: 0 0;
+  background: #4c707e;
+  font-size: 1em;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+nav .nav-brand {
+  flex-basis: 10%;
+  margin-left: 10px;
+  color: #FFF;
+  /* background-color: rgba(151, 167, 173, 1); */
+}
+
+nav .nav-brand .folio {
+  color: rgb(236, 162, 162);
+  padding: 15px 0;
+}
+
+nav .nav-brand a {
+  text-decoration: none;
+  color: #FFF;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid rgba(221, 221, 221, 0.7)
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav ul li {
+  color: #333;
+  padding: 0 10px;
+  transition: all .2sec ease-in-out;
+}
+
+nav ul li a {
+  /* background: rgba(89, 123, 136, 0.7); */
+  padding: 15px 10px;
+  color: rgb(211, 210, 210);
+  font-size: 1.2rem;
+}
+
+nav ul li:hover {
+  transform: scale(1.05);
+}
+
+input.search-input {
+  border: none;
+  background-color: rgb(211, 210, 210);
+}
+
+
 div > #container {
   display: flex;
 }
-div > #coin-wrapper {
-}
+/* div > #coin-wrapper {
+} */
 a > #toggle-btn {
   position: fixed;
   margin-top: 10px;
@@ -13,11 +97,13 @@ a > #toggle-btn {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 80%;
+  width: 95vw;
+  overflow: hidden;
   height: 250px;
   border: 1px solid #ddd;
   position: relative;
-  margin-top: 30px;
+  /* border-top-left-radius: 5px; */
+  /* //border-radius: 5px; */
 }
 
 th,
@@ -26,25 +112,112 @@ td {
   padding: 16px;
 }
 
+thead tr {
+  background: #acb9bd;
+  font-size: 1.5rem;
+}
+
+tbody tr {
+  /* background: #67828d; */
+  border-radius: 5px;
+  border-bottom: 0.5px solid rgba(221, 221, 221, 0.6);
+  font-size: 1.1rem;
+  transition: all .2sec ease-in;
+}
+tbody tr:hover {
+  transform: scaleX(0.98);
+}
+
+tbody tr input {
+  border: none;
+  text-align: center;
+  /* border-bottom: 1px solid #333; */
+  border-radius: 2px;
+  margin-left: 0px;
+  background: #f2f2f2;
+  cursor: pointer;
+}
+
+thead tr th, tbody tr td {
+  text-align: center;
+}
+
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+label {
+  margin-top: 20px;
+  font-size: 1.3rem;
+}
 #filter-input-box {
+  display: block;
   padding: 10px;
   margin-bottom: 10px;
   width: 300px;
   font-size: 18px;
   border-radius: 5px;
   outline: none;
-  background-color: ;
-  margin-top: 20px;
 }
 
-#news-wrapper {
+.news-wrapper {
   display: none;
+  background: #e9e7e7;
+  padding: 10px;
+  border-radius: 5px;
+  /* margin-top: 20p; */
 }
 
+#news-list-wrapper div {
+  max-width: 95vw;
+  height: 20px;
+  line-height: 1.6rem;
+  border-bottom: 1px solid rgba(76,112,126, 0.4);
+  transition: all .2sec ease-in-out;
+  padding: 15px 5px;
+}
+
+#news-list-wrapper div:hover {
+  transform: scale(1.01);
+}
+
+.news-wrapper h1 {
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+#news-list-wrapper a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  padding: 5px 0px;
+}
+
+#news-list-wrapper a:hover {
+  transform: scale(1.1);
+}
+
+.icon-point {
+  color: #4c707e;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.icon-edit {
+  color: #4c707e;
+  font-size: 1.1rem;
+}
+
+
+.coin-img-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin-img-name img {
+  margin-right: 0.6rem;
+}
 #toggle-wrapper {
   float: right;
   /* border: 1px solid black; */
@@ -55,6 +228,65 @@ tr:nth-child(even) {
   margin-right: 10px;
 }
 a:link {
-  font-size: 25px;
+  /* font-size: 25px; */
   text-decoration: none;
+}
+
+
+
+/* footer {
+  position: absolute;
+  width: 100vw;
+  background: #4c707e;
+  padding: 15px;
+  color: #fff;
+  text-align: center;
+} */
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  table {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+
+  nav {
+    /* //background: #fff; */
+    max-width: 100vw;
+    padding: 0;
+  }
+
+  .nav-brand {
+    display: none;
+  }
+
+  nav ul li {
+    padding: 0;
+  }
+
+  #filter-input-box {
+    max-width: 90vw;
+  }
+
+  thead tr {
+    font-size: 1rem;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  th, td {
+    padding: 1rem 0.13rem;
+  }
+
+  #news-list-wrapper div {
+    height: auto;
+  }
 }

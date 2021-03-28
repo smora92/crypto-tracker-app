@@ -5,34 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="toggle-wrapper">
-      <a href="#" id="toggle-btn" data-view="portfolio">NEWS</a>
+    <nav>
+      <span class="nav-brand">
+        <a href="#" class="brand">Crypto<span class="folio">Folio</span></a>
+      </span>
+      <ul>
+        <li><a href="#" id="switch-portfolio-btn">My Portfolio</a></li>
+        <li><a href="#" id="switch-news-btn">Crypto News</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 id="page-title">Crypto Portfolio</h1>
+      <div class="news-wrapper" id="news-wrapper">
+        <div id="news-list-wrapper"></div>
+      </div>
+
+      <div id="coin-wrapper" aria-label="filter-coin-wrapper">
+        <label for="filter-input-box">Filter Result</label>
+        <input
+          type="text"
+          id="filter-input-box"
+          class="search-input"
+          placeholder="filter coins"
+          aria-label="filter-coin-input-box"
+          />
+      </div>
     </div>
-    <div id="news-wrapper">
-      <h1>Crypto News</h1>
-      <div id="news-list-wrapper"></div>
+          
+    </div role="table" aria-label="cryptocurrencies" aria-describedby="Updated_portfolio_value">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th class="hide-on-mobile">Last Updated</th>
+              <th>Units Owned</th>
+              <th>Portfolio Value</th>
+            </tr>
+          </thead>
+          <tbody id="coin-list-table"></tbody>
+        </table>
+      </div>
+
+      <!-- <div class="controls">
+        <div class="control">
+          <a id="reset">Reset All</a>
+        </div>
+      </div> -->
     </div>
-    <div id="coin-wrapper">
-      <input
-        type="text"
-        id="filter-input-box"
-        placeholder="type coin symbol e.g BTC"
-      />
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Last Updated</th>
-            <th>Units Owned</th>
-            <th>Portfolio Value</th>
-          </tr>
-        </thead>
-        <tbody id="coin-list-table"></tbody>
-      </table>
-    </div>
+    <!-- <footer>
+      &copy 2021, CryptoFolio
+    </footer> -->
+
   </body>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"

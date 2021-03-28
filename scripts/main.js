@@ -9,7 +9,18 @@ const coins = [
   "ADA",
   "DOT",
   "BNB",
+  "XLM",
+  "REM",
+  "BAT",
+  "MKR",
+  "USD",
+  "XCM"
 ];
+
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
 
 const sortPrices = (prices) => {
   const allPrices = [];
@@ -95,20 +106,18 @@ $(document).ready(() => {
 
       const innerHTML = `
              <tr>
-                <td class='coin-name'">${name}</td>
-                <td id="${name}-price">${price}</td>
-                <td>${moment(time).format("h:mm:ss a")}</td>
+                <td class='coin-name'"><div class="coin-img-name"><img class="hide-on-mobile" src="https://cryptoicons.org/api/icon/${name.toLowerCase()}/50"> <span> ${name} </span> </div></td>
+                <td id="${name}-price">${formatter.format(price)}</td>
+                <td class="hide-on-mobile">${moment(time).format("h:mm:ss a")}</td>
               
                  <td>
                  <form onsubmit="addPortfolio('${name}')">
-                    <input size="4" id="${name}-input" value='${
-        portfolio[name] ? portfolio[name] : 0
-      }' /></form> 
+                    <span><i class="icon-edit hide-on-mobile">&#9998</i> <input size="7" id="${name}-input" value='${portfolio[name] ? portfolio[name] : 0
+        }' title="Edit ${name} value" /></span></form> 
                  </td>
 
-                <td id="${name}-portfolio-value">${
-        portfolio[name] ? (price * portfolio[name]).toFixed(2) : 0
-      }</td>
+                <td id="${name}-portfolio-value">${portfolio[name] ? `${formatter.format(price * portfolio[name])}` : 0
+        }</td>
 
             </tr>
         `;
@@ -135,13 +144,12 @@ $(document).ready(() => {
   )
     .then((response) => response.json())
     .then((newsResult) => {
-      console.log(newsResult);
       const articles = newsResult.articles;
       articles.forEach((article) => {
         const title = article.title;
         const url = article.url;
 
-        const articleLink = `<div> <a href="${url}" target="_blank">${title}</a> </div>`;
+        const articleLink = `<div> <i class="icon-point hide-on-mobile">&#9758;</i> <a href="${url}" target="_blank">${title}</a> </div>`;
 
         $("#news-list-wrapper").append(articleLink);
       });
@@ -150,16 +158,15 @@ $(document).ready(() => {
       console.log("Unable to fetch news from newsApi");
     });
 
-  $("#toggle-btn").on("click", function () {
-    $("#coin-wrapper").toggle();
-    $("#news-wrapper").toggle();
+  $("#switch-news-btn").on("click", function () {
+    $('#page-title').text('Crypto News');
+    $("#news-wrapper").show();
+    $("#coin-wrapper").hide();
+  });
 
-    if ($(this).data("view") === "portfolio") {
-      $(this).data("view", "news");
-      $(this).text("PORTFOLIO");
-    } else {
-      $(this).data("view", "portfolio");
-      $(this).text("NEWS");
-    }
+  $("#switch-portfolio-btn").on("click", function () {
+    $('#page-title').text('Crypto Portfolio');
+    $("#news-wrapper").hide();
+    $("#coin-wrapper").show();
   });
 });
