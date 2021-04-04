@@ -20,7 +20,7 @@ const coins = [
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
-});
+});//display price in USD
 
 const sortPrices = (prices) => {
   const allPrices = [];
@@ -36,8 +36,7 @@ const sortPrices = (prices) => {
 
       allPrices.push(coinData);
     }
-  });
-
+  })
   return allPrices;
 };
 
@@ -71,12 +70,14 @@ const removeCoin = (coin) => {
 };
 
 const updatePortfolioValue = (coin, newValue) => {
-  const currentPrice = Number($(`#${coin}-price`).text());
+  console.log($(`#${coin}-price`).text());
+  const currentPrice = Number($(`#${coin}-price`).data('value'));
   const currentPortfolioValue = (newValue * currentPrice).toFixed(2);
 
-  $(`#${coin}-portfolio-value`).text(currentPortfolioValue);
+  $(`#${coin}-portfolio-value`).text(formatter.format(currentPortfolioValue));
 };
 
+//add units owned 
 const addPortfolio = (coin) => {
   const coinUnitsOwned = $(`#${coin}-input`).val();
 
@@ -85,7 +86,9 @@ const addPortfolio = (coin) => {
     updatePortfolioValue(coin, coinUnitsOwned);
     return;
   }
+
   alert("Please enter a number");
+  $(`#${coin}-input`).val(0);
   return;
 };
 
@@ -107,7 +110,7 @@ $(document).ready(() => {
       const innerHTML = `
              <tr>
                 <td class='coin-name'"><div class="coin-img-name"><img class="hide-on-mobile" src="https://cryptoicons.org/api/icon/${name.toLowerCase()}/50"> <span> ${name} </span> </div></td>
-                <td id="${name}-price">${formatter.format(price)}</td>
+                <td id="${name}-price" data-value=${price}>${formatter.format(price)}</td>
                 <td class="hide-on-mobile">${moment(time).format("h:mm:ss a")}</td>
               
                  <td>
@@ -123,7 +126,7 @@ $(document).ready(() => {
         `;
       $("#coin-list-table").append(innerHTML);
     });
-    // $('#coin-wrapper')
+
   };
   const coinApiKey = "7A224DAC-9286-42A8-B2D8-BB400EEB77D5";
   const gnewsApiKey = "40103cea1bf3d18bc6a9678a0ac8ad37";
@@ -169,4 +172,5 @@ $(document).ready(() => {
     $("#news-wrapper").hide();
     $("#coin-wrapper").show();
   });
+
 });

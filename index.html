@@ -34,34 +34,24 @@
           placeholder="filter coins"
           aria-label="filter-coin-input-box"
           />
+      <div role="table" aria-label="cryptocurrencies" aria-describedby="Updated_portfolio_value">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th class="hide-on-mobile">Last Updated</th>
+                  <th>Units Owned</th>
+                  <th>Portfolio Value</th>
+                </tr>
+              </thead>
+              <tbody id="coin-list-table"></tbody>
+            </table>
+          </div>
       </div>
     </div>
           
-    </div role="table" aria-label="cryptocurrencies" aria-describedby="Updated_portfolio_value">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th class="hide-on-mobile">Last Updated</th>
-              <th>Units Owned</th>
-              <th>Portfolio Value</th>
-            </tr>
-          </thead>
-          <tbody id="coin-list-table"></tbody>
-        </table>
-      </div>
-
-      <!-- <div class="controls">
-        <div class="control">
-          <a id="reset">Reset All</a>
-        </div>
-      </div> -->
     </div>
-    <!-- <footer>
-      &copy 2021, CryptoFolio
-    </footer> -->
-
   </body>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
